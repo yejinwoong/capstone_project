@@ -1,0 +1,27 @@
+<div class="p-4 bg-white rounded-3 shadow-sm">
+  <h2 class="h5 mb-3">카테고리별 절감량(g)</h2>
+
+  <!-- 고정 높이 컨테이너로 감싸기 -->
+  <div style="height:360px">
+    <canvas id="catChart"></canvas>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('catChart');
+
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: {{ labels_json|safe }},
+    datasets: [{ label: '절감량(g)', data: {{ values_json|safe }} }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,   // ← 부모 높이(360px)에 맞춤
+    plugins: { legend: { display: true } },
+    scales: { y: { beginAtZero: true } }
+  }
+});
+</script>

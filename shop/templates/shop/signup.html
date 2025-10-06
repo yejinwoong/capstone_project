@@ -1,0 +1,7 @@
+{% extends 'shop/base.html' %}{% block content %}
+<h2 class="mb-3">회원가입</h2>
+<form method="post" class="bg-white p-4 rounded-3 shadow-sm">{% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn btn-success">가입</button>
+</form>
+{% endblock %}

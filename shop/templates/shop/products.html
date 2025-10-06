@@ -1,0 +1,51 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+
+<form class="row g-2 mb-3">
+  <div class="col-md-4">
+    <input name="q" value="{{ q }}" class="form-control" placeholder="제품 검색">
+  </div>
+
+  <div class="col-md-4">
+    <select name="cat" class="form-select">
+      <option value="">전체 카테고리</option>
+      {% for c in cats %}
+        <option value="{{ c.name }}" {% if cat == c.name %}selected{% endif %}>
+          {{ c.name }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="col-md-4">
+    <button class="btn btn-success w-100" type="submit">검색</button>
+  </div>
+</form>
+
+<div class="row g-3">
+  {% for p in products %}
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h3 class="h6">{{ p.name }}</h3>
+          <div class="small text-muted mb-2">{{ p.category.name }}</div>
+          <div>가격: {{ p.price }}원</div>
+          <div class="mb-3">
+            절감: <strong>{{ p.co2_saving_g }} g CO₂/개</strong>
+          </div>
+
+          <form method="post" action="/add/">
+            {% csrf_token %}
+            <input type="hidden" name="pid" value="{{ p.id }}">
+            <input type="number" name="qty" value="1" min="1" class="form-control form-control-sm mb-2">
+            <button class="btn btn-outline-success w-100" type="submit">담기</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p>제품이 없습니다</p>
+  {% endfor %}
+</div>
+
+{% endblock %}

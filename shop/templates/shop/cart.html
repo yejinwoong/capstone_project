@@ -1,0 +1,19 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+<h2 class="mb-3">장바구니</h2>
+{% if items %}
+<table class="table bg-white">
+  <thead><tr><th>제품</th><th>수량</th><th>가격(원)</th><th>절감량(g CO₂)</th></tr></thead>
+  <tbody>
+    {% for i in items %}
+    <tr><td>{{ i.p.name }}</td><td>{{ i.qty }}</td><td>{{ i.line_price }}</td><td>{{ i.line_saving }}</td></tr>
+    {% endfor %}
+  </tbody>
+  <tfoot><tr class="table-light"><th>합계</th><th></th><th>{{ total_price }}</th><th>{{ total_saving }}</th></tr></tfoot>
+</table>
+<a href="/products/" class="btn btn-outline-success">쇼핑 계속</a>
+{% else %}
+<div class="alert alert-secondary">담은 상품이 없습니다</div>
+<a href="/products/" class="btn btn-success">제품 보러가기</a>
+{% endif %}
+{% endblock %}

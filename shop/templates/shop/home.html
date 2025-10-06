@@ -1,0 +1,128 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+
+<!-- Hero -->
+<section class="hero p-5 d-flex align-items-center">
+  <div class="col-12 col-lg-7">
+    <h1 class="mb-3">탄소 절감형 쇼핑의 시작</h1>
+    <p class="text-muted fs-5 mb-4">Upcycle Market과 함께 지구를 지키는 소비를 시작하세요</p>
+    <a href="/products/" class="btn btn-success btn-lg me-2">제품 보러가기</a>
+    <a href="/dashboard/" class="btn btn-outline-success btn-lg">대시보드</a>
+  </div>
+</section>
+
+<!-- 섹션 타이틀 -->
+<section id="features" class="mt-5 text-center">
+  <h2 class="fw-bold">Upcycle Market MVP</h2>
+  <p class="text-muted">장바구니 탄소 절감 계산부터 친환경 대체안 추천, 환경 데이터 시각화까지</p>
+</section>
+
+<!-- ① 장바구니 탄소 절감 계산 -->
+<section class="row g-4 align-items-center mt-1">
+  <div class="col-md-6">
+    <img class="img-fluid rounded-3 shadow-sm"
+         src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1400&auto=format&fit=crop"
+         alt="장바구니 UI 목업">
+  </div>
+  <div class="col-md-6">
+    <div class="feature-num">① 장바구니 탄소 절감 계산</div>
+    <p class="text-muted mt-2">실시간으로 장바구니 속 상품들의 탄소 절감을 계산하고 시각화합니다.</p>
+    <ul class="text-muted">
+      <li>상품별 탄소 배출량 자동 계산</li>
+      <li>총 절감량 실시간 표시</li>
+      <li>직관적 지표 제공</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ② 친환경 대체안 추천 -->
+<section class="row g-4 align-items-center mt-5">
+  <div class="col-md-6 order-md-2">
+    <img class="img-fluid rounded-3 shadow-sm"
+         src="https://images.unsplash.com/photo-1557825835-70d97c4aa9f2?q=80&w=1400&auto=format&fit=crop"
+         alt="추천 UI 목업">
+  </div>
+  <div class="col-md-6 order-md-1">
+    <div class="feature-num">② 친환경 대체안 추천</div>
+    <p class="text-muted mt-2">유사 제품 대비 탄소가 낮은 상품을 간결한 카드로 추천합니다.</p>
+    <ul class="text-muted">
+      <li>재활용·업사이클 제품 우선 노출</li>
+      <li>친환경 인증 필터</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ③ 환경 데이터 대시보드 -->
+<section class="row g-4 align-items-center mt-5">
+  <div class="col-md-6">
+    <img class="img-fluid rounded-3 shadow-sm"
+         src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1400&auto=format&fit=crop"
+         alt="대시보드 UI 목업">
+  </div>
+  <div class="col-md-6">
+    <div class="feature-num">③ 환경 데이터 대시보드</div>
+    <p class="text-muted mt-2">카테고리별 절감량 그래프와 누적 지표를 제공합니다.</p>
+    <ul class="text-muted">
+      <li>카테고리별 절감량 차트</li>
+      <li>누적 절감량 카드</li>
+    </ul>
+    <a href="/dashboard/" class="btn btn-outline-success">대시보드 보기</a>
+  </div>
+</section>
+
+<!-- 인사이트 & 성과 -->
+<section class="mt-5">
+  <h2 class="fw-bold mb-3">환경 데이터 대시보드 알림 및 인사이트</h2>
+
+  <div class="row g-3">
+    <!-- 주간 성과 카드 -->
+    <div class="col-md-6">
+      <div class="p-4 bg-white rounded-3 shadow-sm h-100">
+        <div class="d-flex align-items-start gap-2">
+          <div class="fs-4">{{ insights.weekly.icon }}</div>
+          <div>
+            <div class="fw-semibold">{{ insights.weekly.title }}</div>
+            <div class="mt-1"><span class="fw-bold">{{ insights.weekly.headline }}</span></div>
+            <p class="text-muted mb-0 mt-1">{{ insights.weekly.desc }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 월간 리포트 카드 -->
+    <div class="col-md-6">
+      <div class="p-4 bg-white rounded-3 shadow-sm h-100">
+        <div class="d-flex align-items-start gap-2">
+          <div class="fs-4">{{ insights.monthly.icon }}</div>
+          <div>
+            <div class="fw-semibold">{{ insights.monthly.title }}</div>
+            <div class="mt-1"><span class="fw-bold">{{ insights.monthly.headline }}</span></div>
+            <p class="text-muted mb-0 mt-1">{{ insights.monthly.desc }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-4">
+
+  <!-- 맞춤형 팁/뉴스 -->
+  <h3 class="h5 fw-bold mb-3">맞춤형 친환경 팁 & 뉴스</h3>
+  <ul class="list-unstyled text-muted">
+    {% for t in insights.tips %}
+      <li class="mb-2">• {{ t }}</li>
+    {% endfor %}
+  </ul>
+</section>
+
+<!-- CTA -->
+<section class="text-center py-5 mt-5">
+  <h3 class="fw-bold mb-2">지금 시작하세요</h3>
+  <p class="text-muted">Upcycle Market과 함께 탄소 절감형 쇼핑을 경험해보세요</p>
+  <a href="/#features" class="btn btn-outline-success me-2">주요 기능 보기</a>
+  <a href="mailto:contact@upcyclemarket.com" class="btn btn-success">문의하기</a>
+</section>
+
+<!-- 앵커 -->
+<div id="contact"></div>
+{% endblock %}
